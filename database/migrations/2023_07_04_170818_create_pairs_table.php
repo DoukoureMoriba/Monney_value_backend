@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pairs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('role');
+            $table->foreignId('id_sources')->references('id')->on('currencies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_target')->references('id')->on('currencies')->onDelete('cascade')->onUpdate('cascade');
+            $table->decimal('conversion_rates');
+            $table->integer('count')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pairs');
     }
 };
