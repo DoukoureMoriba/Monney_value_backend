@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\PairController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PairController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,11 @@ Route::post('/udpate_pairs/{id}',[PairController::class,'update']);
 
 //Route pour supprimer une pair.
 Route::delete('/delete_pairs/{id}',[PairController::class,'destroy']);
+
+// Route pour le login
+Route::post('/login',[UserController::class,'login']);
+
+
+
+// Route pour le logout
+Route::post('/logout',[UserController::class,'logout']);
