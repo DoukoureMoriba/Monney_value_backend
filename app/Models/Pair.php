@@ -21,11 +21,13 @@ class Pair extends Model
     
     public function sourceCurrency()
 {
+    // Recuperation des infos des pairs
     return $this->belongsTo(Currency::class, 'id_sources');
 }
 
 public function targetCurrency()
 {
+    // Recuperation des infos des pairs
     return $this->belongsTo(Currency::class, 'id_target');
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PairResources;
 use Exception;
 use App\Models\Pair;
 use Illuminate\Http\Request;
@@ -17,11 +18,11 @@ class PairController extends Controller
     public function index()
     {
         try {
-            $pair = Pair::all();
+            
             return response()->json([
                 'status'=>'Done',
                 'message'=>'La liste des pairs a été récuperer avec succes',
-                'data'=>$pair   // On retourne la valeur de la variable $pairs.  
+                'data'=>PairResources::collection(Pair::all()), // On retourne une collection de la ressources
             ]);
         } catch (Exception $error) {
             return response()->json(  

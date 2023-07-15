@@ -49,4 +49,4 @@ Route::post('/login',[UserController::class,'login']);
 
 
 // Route pour le logout
-Route::post('/logout',[UserController::class,'logout']);
+Route::get('/logout',[UserController::class,'logout']);
