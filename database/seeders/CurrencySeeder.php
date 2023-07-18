@@ -16,23 +16,23 @@ class CurrencySeeder extends Seeder
     public function run()
     {
         $currency = new Currency();
-        $currency-> code_currency = 'BTC';
+        $currency->code_currency = 'BTC';
         $currency->save();
 
         $currency = new Currency();
-        $currency-> code_currency = 'ETH';
+        $currency->code_currency = 'ETH';
         $currency->save();
 
         $currency = new Currency();
-        $currency-> code_currency = 'XOF';
+        $currency->code_currency = 'XOF';
         $currency->save();
 
         $currency = new Currency();
-        $currency-> code_currency = 'USD';
+        $currency->code_currency = 'USD';
         $currency->save();
 
         $currency = new Currency();
-        $currency-> code_currency = 'EUR';
+        $currency->code_currency = 'EUR';
         $currency->save();
     }
 }

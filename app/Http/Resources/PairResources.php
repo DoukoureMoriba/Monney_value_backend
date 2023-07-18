@@ -16,13 +16,13 @@ class PairResources extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'id'=>$this->id,
-            'id_sources'=>$this->id_sources,
-            'currency_sources'=>$this->sourceCurrency->code_currency,
-            'id_target'=>$this->id_target,
-            'currency_target'=>$this->targetCurrency->code_currency,
-            'conversion_rates'=>$this->conversion_rates,
-            'count'=>$this->count,
+            'id' => $this->id,
+            'id_sources' => $this->id_sources,
+            'currency_sources' => $this->sourceCurrency->code_currency,
+            'id_target' => $this->id_target,
+            'currency_target' => $this->targetCurrency->code_currency,
+            'conversion_rates' => $this->conversion_rates,
+            'count' => $this->count,
         ];
     }
 }

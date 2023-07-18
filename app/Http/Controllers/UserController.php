@@ -29,7 +29,7 @@ class UserController extends Controller
             }
         } else{
             return response()->json([
-                'status'=>'Done',
+                'status'=>'Error',
                 'message'=>'Impossible de vous connecter',
             ]);
 

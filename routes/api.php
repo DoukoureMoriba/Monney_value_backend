@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CurrencyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PairController;
@@ -33,11 +34,13 @@ Route::get('/test',function(){
 // Route qui va retourner la list des pairs.
 Route::get('/list_pairs',[PairController::class,'index']);
 
-
 //Route pour ajouter une pair
 Route::post('/add_pairs',[PairController::class,'store']);
 
-//Route pour ajouter une modifier une pair.
+// Route pour récuperer les informations d'une pair
+Route::get('/get_pair/{id}',[PairController::class,'show']);
+
+//Route pour modifier une pair.
 Route::post('/udpate_pairs/{id}',[PairController::class,'update']);
 
 //Route pour supprimer une pair.
@@ -46,7 +49,24 @@ Route::delete('/delete_pairs/{id}',[PairController::class,'destroy']);
 // Route pour le login
 Route::post('/login',[UserController::class,'login']);
 
-
-
 // Route pour le logout
 Route::get('/logout',[UserController::class,'logout']);
+
+// Route pour recuperer les monnaies
+Route::get('/list_currency',[CurrencyController::class,'index']);
+
+//Route pour ajouter une Monnaie
+Route::post('/add_money',[CurrencyController::class,'store']);
+
+
+// Route pour récuperer les informations d'une monnaie
+Route::get('/get_money/{id}',[CurrencyController::class,'show']);
+
+// //Route pour modifier une pair.
+Route::post('/udpate_money/{id}',[CurrencyController::class,'update']);
+
+//Route pour supprimer une Monnaie.
+Route::delete('/delete_money/{id}',[CurrencyController::class,'destroy']);
+
+
+

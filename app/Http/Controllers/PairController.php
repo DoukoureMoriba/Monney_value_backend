@@ -18,14 +18,14 @@ class PairController extends Controller
     public function index()
     {
         try {
-            
+
             return response()->json([
-                'status'=>'Done',
-                'message'=>'La liste des pairs a été récuperer avec succes',
-                'data'=>PairResources::collection(Pair::all()), // On retourne une collection de la ressources
+                'status' => 'Done',
+                'message' => 'La liste des pairs a été récuperer avec succes',
+                'data' => PairResources::collection(Pair::all()), // On retourne une collection de la ressources
             ]);
         } catch (Exception $error) {
-            return response()->json(  
+            return response()->json(
                 $error
             );
         }
@@ -38,9 +38,6 @@ class PairController extends Controller
      */
     public function create()
     {
-
-       
-        
     }
 
     /**
@@ -54,28 +51,28 @@ class PairController extends Controller
 
         try {
             $validator = $request->validate([
-                'id_sources'=>'required',
-                'id_target'=>'required',
-                'conversion_rates'=>'required',
+                'id_sources' => 'required',
+                'id_target' => 'required',
+                'conversion_rates' => 'required',
             ]);
 
             // Declaration des variables que j'utiliserais dans les instensiation
             $id_sources = $validator['id_sources'];
             $id_target =   $validator['id_target'];
             $conversion_rates =   $validator['conversion_rates'];
-            
+
 
             // Vérifier si la paire existe déjà
             $existingPair = Pair::where('id_sources', $id_sources)
-            ->where('id_target', $id_target)
-            ->first();
+                ->where('id_target', $id_target)
+                ->first();
 
             if ($existingPair) {
-            // La paire existe déjà
-            return response()->json([
-            'status' => 'Error',
-            'message' => 'La paire existe déjà',
-            ]);
+                // La paire existe déjà
+                return response()->json([
+                    'status' => 'Error',
+                    'message' => 'La paire existe déjà',
+                ]);
             }
 
             // instensiation de la pair pour éviter les doublons
@@ -86,18 +83,14 @@ class PairController extends Controller
             $add_pairs->count = 0;
             $add_pairs->save();
             return response()->json([
-                'status'=>'Done',
-                'message'=>'Votre pair a été créer avec succes',
+                'status' => 'Done',
+                'message' => 'Votre pair a été créer avec succes',
             ]);
-
         } catch (Exception $error) {
-            return response()->json(  
+            return response()->json(
                 $error
             );
         }
-         
-
-        
     }
 
     /**
@@ -108,7 +101,18 @@ class PairController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $pair = Pair::findOrfail($id);
+            return response()->json([
+                'status' => 'Done',
+                'message' => 'Les infos de la pair ont  été récuperer avce succes',
+                'data' => $pair,
+            ]);
+        } catch (Exception $error) {
+            return response()->json(
+                $error
+            );
+        }
     }
 
     /**
@@ -133,9 +137,9 @@ class PairController extends Controller
     {
         try {
             $validator = $request->validate([
-                'id_sources'=>'required',
-                'id_target'=>'required',
-                'conversion_rates'=>'required',
+                'id_sources' => 'required',
+                'id_target' => 'required',
+                'conversion_rates' => 'required',
             ]);
 
             //on recherche l'id de l'element qu'on souhaite modifier
@@ -144,18 +148,18 @@ class PairController extends Controller
             $id_target =   $validator['id_target'];
             $conversion_rates =   $validator['conversion_rates'];
 
-            
+
             //On recupere les element du formulaire et on met a jour les données.
             $pair->id_sources = $id_sources;
             $pair->id_target =  $id_target;
             $pair->conversion_rates =  $conversion_rates;
             $pair->update();
             return response()->json([
-                'status'=>'Done',
-                'message'=>'Votre pair a été modifier avec succes',
+                'status' => 'Done',
+                'message' => 'Votre pair a été modifier avec succes',
             ]);
         } catch (Exception $error) {
-            return response()->json(  
+            return response()->json(
                 $error
             );
         }
@@ -174,15 +178,13 @@ class PairController extends Controller
             $pair = Pair::findOrfail($id);
             $pair->delete();
             return response()->json([
-                'status'=>'Done',
-                'message'=>'Votre pair a été supprimer avec succes',
+                'status' => 'Done',
+                'message' => 'Votre pair a été supprimer avec succes',
             ]);
         } catch (Exception $error) {
-            return response()->json(  
+            return response()->json(
                 $error
             );
-            
         }
-        
     }
 }

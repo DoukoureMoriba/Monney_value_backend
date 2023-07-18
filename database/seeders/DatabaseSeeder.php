@@ -19,9 +19,5 @@ class DatabaseSeeder extends Seeder
             PairSeeder::class,
             UserSeeder::class,
         ]);
-    
     }
-    
-
-    
 }
