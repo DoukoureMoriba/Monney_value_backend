@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConvertionController;
 use App\Http\Controllers\CurrencyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -68,5 +69,10 @@ Route::post('/udpate_money/{id}',[CurrencyController::class,'update']);
 //Route pour supprimer une Monnaie.
 Route::delete('/delete_money/{id}',[CurrencyController::class,'destroy']);
 
+//Route qui nous permettra d'afficher le resultat de la conversion
+Route::post('/convert_amount/{id}',[ConvertionController::class,'convert']);
+
+// Route qui me permet de recuperer l'id d'une pair.
+Route::post('/getpair_id',[ConvertionController::class,'getPairId']);
 
 

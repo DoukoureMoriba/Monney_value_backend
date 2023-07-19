@@ -105,7 +105,7 @@ class PairController extends Controller
             $pair = Pair::findOrfail($id);
             return response()->json([
                 'status' => 'Done',
-                'message' => 'Les infos de la pair ont  été récuperer avce succes',
+                'message' => 'Les infos de la pair ont  été récuperer avec succes',
                 'data' => $pair,
             ]);
         } catch (Exception $error) {
